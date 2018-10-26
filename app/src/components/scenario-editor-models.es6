@@ -26,7 +26,9 @@ const Types = {
 export const Comparators = {
   String: {
     contains: new Comparator(localized('contains'), ({ actual, desired }) => {
-      if (!actual || !desired) {
+      if (desired === "") {
+        return actual === desired;
+      } else if (!actual || !desired) {
         return false;
       }
       return actual.toLowerCase().includes(desired.toLowerCase());
